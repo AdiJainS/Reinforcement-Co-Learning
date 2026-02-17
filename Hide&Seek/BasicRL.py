@@ -9,7 +9,7 @@ from torch.distributions import Categorical
 import imageio
 import gc
 
-# --- 1. XML: CURRICULUM ARENA ---
+# DESIGNING CURRICULUM ARENA
 def generate_curriculum_xml():
     print("Generating Curriculum Arena (Walls +/- 10, Blue Seekers, Red Hider)...")
     xml_content = f"""
@@ -128,7 +128,7 @@ def generate_curriculum_xml():
 with open("mappo_curriculum.xml", "w") as f:
     f.write(generate_curriculum_xml())
 
-# --- 2. ENVIRONMENT ---
+# CREATING ENVIRONMENT
 class CurriculumEnv(gym.Env):
     def __init__(self, xml_path):
         self.model = mujoco.MjModel.from_xml_path(xml_path)
@@ -317,7 +317,7 @@ class CurriculumEnv(gym.Env):
         if hasattr(self, 'renderer'):
             self.renderer.close()
 
-# --- 3. ICM ---
+# ICM 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class ICM(nn.Module):
@@ -344,8 +344,7 @@ class ICM(nn.Module):
         icm_loss = forward_loss.mean() + inverse_loss.mean()
 
         return intrinsic_reward, icm_loss
-
-# --- 4. MAPPO MODEL ---
+# MAPPO MODELLING
 class MAPPO(nn.Module):
     def __init__(self, obs_dim, n_agents=3, act_dim=5):
         super().__init__()
@@ -403,7 +402,7 @@ def ppo_update(model, optimizer, obs_batch, global_obs_batch, act_batch, logp_ol
     nn.utils.clip_grad_norm_(model.parameters(), 0.5)
     optimizer.step()
 
-# --- 6. TRAINING LOOP ---
+# TRAIN
 gc.collect()
 env = CurriculumEnv("mappo_curriculum.xml")
 
@@ -514,5 +513,6 @@ for episode in range(EPISODES):
 env.close()
 imageio.mimsave('curriculum_icm_merged.mp4', frames, fps=40)
 print("DONE! Video Saved.")
+
 
 
