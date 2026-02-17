@@ -370,7 +370,6 @@ class MAPPO(nn.Module):
     def value(self, global_obs):
         return self.critic(global_obs)
 
-# --- 5. PPO UTILS ---
 def compute_gae(rewards, values, next_value, dones, gamma=0.99, lam=0.95):
     advantages = []
     gae = 0
@@ -513,6 +512,7 @@ for episode in range(EPISODES):
 env.close()
 imageio.mimsave('curriculum_icm_merged.mp4', frames, fps=40)
 print("DONE! Video Saved.")
+
 
 
 
