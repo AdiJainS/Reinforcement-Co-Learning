@@ -1,9 +1,11 @@
 # Reinforcement-Co-Learning
 (trying) Implementing OpenAI's hide and seek model
 
-#MAPPO :
+# MAPPO :
 MAPPO, or Multi-Agent Proximal Policy Optimization. It follows CTDE framework: Centralized Training, Decentralized Execution.
 Centralized Training: During the training phase, we assume access to more information than will be available at execution time. This might include the observations and actions of all agents, or even the underlying global state of the environment. These agents have global info which will help them to coordinate .
+
+How it differs from traditional PPO is that, instead of having a critic for every actor separately, we instead have a combined critic for all the actors. As this critic is aware fo global information, it leads to faster convergence than compared to running the algorithms locally
 
 Decentralized Execution : Once training is complete, the centralized component is discarded. Each agent deploys its learned policies which selects actions based only on its own local observation history. It does not need a central mind thing.
 
