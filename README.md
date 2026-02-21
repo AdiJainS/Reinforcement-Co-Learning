@@ -24,7 +24,7 @@ IDM : The work of IDM is pretty simple , to ignore the background or what is hap
 FDM : This model now helps in GENERATING CURIOSITY . When the work with the agent is done , it takes the current state and the action of the agent , generates curiosity and then focuses on the next state.
 The error done by this model gives it intrinsic reward . 
 
-#Gymnasium / Petting zoo -
+# Gymnasium / Petting zoo -
 It is a toolkit used to train RL . Before Gymnasium, every researcher had their own way of building simulations. This made it impossible to compare results. Gymnasium provides a standardized API. The difference between pettingzoo and gymnasium is pettingzoo focuses on Multi-Agent .
 
 
