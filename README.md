@@ -8,7 +8,11 @@ It solves the problem of sparse rewards i.e. when the rewards are very tough to 
 
 When the agent do some task , and if its prediction is wrong, it means it has encountered something new and it receives a high intrinsic reward.
 
-The ICM 
+The ICM notable uses 2 models : the IDM and FDM 
+
+IDM : The work of IDM is pretty simple , to ignore the background or what is happening in the background and focus on what task it has to do . It focuses on current the the upcoming tasks and the actions which will take it to these tasks. IT MAINLY FOCUSES ON THE AGENT
+FDM : This model now helps in GENERATING CURIOSITY . When the work with the agent is done , it takes the current state and the action of the agent , generates curiosity and then focuses on the next state.
+The error done by this model gives it intrinsic reward . 
 
 
 
